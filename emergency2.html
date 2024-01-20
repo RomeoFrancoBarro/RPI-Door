@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Request App</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="viewport" content="width=device-width" />
+    
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/paper-bootstrap-wizard.css" rel="stylesheet" />
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+    
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .image-container {
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            margin-top: 10%;
+            margin-bottom: 6%;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-size: 2em;
+        }
+
+        h2 {
+            color: white;
+            margin-top: 9%;
+            margin-bottom: 23%;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-size: 4em;
+        }
+
+        .text-right {
+            margin-bottom: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="image-container" style="background-image: url('assets/img/paper-2.jpeg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="text-white">Requests are not available right now</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 class="text-white" id="reasoncont">We are having a meeting</h2>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+    
+    <!-- Include Bootstrap and other scripts here -->
+    <script src="assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <!--<script src="assets/js/emergencyRedirect.js" type="text/javascript"></script>
+    <script src="assets/js/emergencyCheck2.js" type="text/javascript"></script>-->
+
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+		import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+
+		const firebaseConfig = {
+		apiKey: "AIzaSyAIzS7oGCbEzBoIm9zwiCR0mqPkRfvl5Do",
+		authDomain: "rpi-door.firebaseapp.com",
+		databaseURL: "https://rpi-door-default-rtdb.firebaseio.com",
+		projectId: "rpi-door",
+		storageBucket: "rpi-door.appspot.com",
+		messagingSenderId: "54773318570",
+		appId: "1:54773318570:web:2d8ecb96854ba5543721d3"
+		};
+		
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+		const db = getDatabase(app);
+
+
+
+        
+
+
+
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+
+            get(ref(db, 'Emergency/' + "EmergencyData")).then((snapshot)=>{
+				if (snapshot.exists()) {
+
+					document.getElementById("reasoncont").textContent = snapshot.val().reason;
+
+				}
+				
+			})
+			.catch((error)=>{alert("there was an error, details: "+error)});
+
+   
+
+        });
+
+
+
+        // Check the Emergency Status
+		function checkEmergency() {
+			console.log("Activated")
+			get(ref(db, 'Emergency/' + "EmergencyData")).then((snapshot)=>{
+				if (snapshot.exists()) {
+
+					setTimeout(checkEmergency, 2000);
+
+				}
+				else{
+					console.log("Activated")
+					// If the item is present and its value is true, redirect to another website
+					
+					window.location.href = "index.html";
+				}
+			})
+			.catch((error)=>{alert("there was an error, details: "+error)});
+
+		}
+
+
+		// Call the function when the DOM content is loaded
+		document.addEventListener("DOMContentLoaded", checkEmergency);
+
+    </script>
+</body>
+
+</html>

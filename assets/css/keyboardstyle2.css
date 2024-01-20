@@ -1,0 +1,108 @@
+.keyboard {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 5px 0;
+    background: #0E0E0E;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    user-select: none;
+    transition: bottom 0.4s;
+    z-index: 2000;
+}
+
+.keyboard--hidden {
+    bottom: -100%;
+}
+
+.keyboard__keys {
+    text-align: center;
+    
+}
+
+.keyboard__key {
+    height: 110px; /* Increase the height */
+    width: 10%; /* Increase the width */
+    max-width: 150px; /* Increase the max-width */
+    margin: 8px; /* Increase the margin */
+    border-radius: 12px; /* Increase the border radius */
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 3rem; /* Increase the font size */
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+.keyboard__key:active {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.keyboard__key--wide {
+    width: 10%; /* Increase the width for wide keys */
+    max-width: 1000px;
+    font-size: 5rem; /* Increase the font size */
+}
+
+.keyboard__key--extra-wide {
+    width: 90%;
+    max-width: 1000px;
+    font-size: 3rem; /* Increase the font size */
+}
+
+.keyboard__key--activatable::after {
+    content: '';
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+}
+
+.keyboard__key--active::after {
+    background: #08ff00;
+}
+
+.keyboard__key--dark {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.keyboard-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1;
+}
+
+/* Hide keyboard initially */
+.keyboard--hidden {
+    display: none;
+}
+
+/* Overlay styles */
+.keyboard-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+/* Show overlay when keyboard is open */
+.keyboard:not(.keyboard--hidden) + .keyboard-overlay {
+    pointer-events: auto; /* Enable pointer events on the overlay when the keyboard is open */
+}
