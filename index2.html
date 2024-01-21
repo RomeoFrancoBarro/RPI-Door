@@ -31,6 +31,10 @@
 	<body>
 		
 	<div >
+
+		<audio controls id="audio">
+			<source src="assets/audio/notifsound.mp3" type="audio/mp3">
+		</audio>
 	    
 
 	    
@@ -184,6 +188,8 @@
 			
 		get(ref(db, 'Prof/' + "ProfData")).then((snapshot)=>{
 			if (snapshot.exists()) {
+
+				audio.play()
 
 				document.getElementById("profactioncont").textContent = displayActions(snapshot.val().action);
 				document.getElementById("profcommentcont").textContent = snapshot.val().comment;
