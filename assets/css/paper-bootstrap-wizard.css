@@ -1559,6 +1559,80 @@ input[type="radio"]:checked + .choicerad{
 
 
 
+/*==========/POPUP STYLE/==========*/
+
+.pop{
+  background-color:whitesmoke;
+  width: 450px;
+  padding: 30px 40px;
+  position: fixed;
+  transform: translate(-50%,-50%);
+
+  left: 50%;
+  top: 50%;
+
+  border-radius: 8px;
+  font-family: "Poppins",sans-serif;
+  display: none;
+  text-align: center;
+
+z-index: 1000;
+}
+.pop button{
+  display: block;
+  margin:  0 0 20px auto;
+  background-color: transparent;
+  font-size: 30px;
+  color: #028f46;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+transition: all ease 0.3s;
+}
+
+.pop button:hover, a:hover{
+  transform: scale(1.1);
+}
+
+.pop h2{
+color: #028f46;
+}
+
+.pop p{
+  font-size: 14px;
+  text-align: justify;
+  margin: 20px 0;
+  line-height: 25px;
+}
+.pop a{
+  display: block;
+  width: 150px;
+  position: relative;
+  margin: 10px auto;
+  text-align: center;
+  background-color: #028f46;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 5px 0;
+
+transition: all ease 0.3s;
+}
+
+
+
+
+
+/*==========/AUDIO STYLE/==========*/
+
+audio{
+visibility: hidden;
+position: absolute;
+}
+
+
+
+
 
 
 
