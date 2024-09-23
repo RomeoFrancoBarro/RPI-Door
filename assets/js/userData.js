@@ -314,6 +314,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const playButton = document.getElementById('userplayvideo');
+    const video = document.getElementById('howtoVideo');
+
+    playButton.addEventListener('click', () => {
+        video.style.display = 'block'; // Show the video
+        video.play(); // Play the video
+    });
+});
+
+
+
+
+
 
 
 
